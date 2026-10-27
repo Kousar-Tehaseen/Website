@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasty Bites | Delicious Food Delivered</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff4757;
+            --primary-hover: #e84118;
+            --secondary: #ffa502;
+            --bg-dark: #1e272e;
+            --text-main: #2f3542;
+            --text-gray: #747d8c;
+            --bg-light: #f1f2f6;
+            --white: #ffffff;
+            --border: #dfe4ea;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Header Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cart-btn {
+            background: rgba(255, 71, 87, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            border: none;
+            transition: background 0.3s;
+        }
+
+        .cart-btn:hover {
+            background: rgba(255, 71, 87, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=80') center/cover;
+            height: 65vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 1rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #f1f2f6;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .btn-sm {
+            padding: 0.45rem 1rem;
+            font-size: 0.85rem;
+            border-radius: 20px;
+        }
+
+        /* Features Bar */
+        .features-bar {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .feature-item i {
+            font-size: 2rem;
+            color: var(--primary);
+            background: rgba(255, 71, 87, 0.1);
+            padding: 1rem;
+            border-radius: 12px;
+        }
+
+        .feature-item h4 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .feature-item p {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .section-title i {
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-size: 1rem;
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .food-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .food-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .food-img-wrapper {
+            position: relative;
+        }
+
+        .food-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .food-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #ffd700;
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .food-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .food-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+        }
+
+        .food-desc {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .food-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            margin-bottom: 1.2rem;
+            border-top: 1px dashed var(--border);
+            border-bottom: 1px dashed var(--border);
+            padding: 0.5rem 0;
+        }
+
+        .food-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .food-meta i {
+            color: var(--primary);
+        }
+
+        .food-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* Order Notification Toast */
+        #toast {
+            visibility: hidden;
+            min-width: 260px;
+            background-color: var(--bg-dark);
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 1rem;
+            position: fixed;
+            z-index: 2000;
+            right: 30px;
+            bottom: 30px;
+            font-size: 0.95rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        #toast i {
+            color: #2ed573;
+        }
+
+        #toast.show {
+            visibility: visible;
+            animation: fadeInOut 3s;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            15% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            85% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-dark);
+            color: var(--white);
+            padding: 3rem 1rem 1.5rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-content h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-content p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo"><i class="fas fa-utensils"></i> Tasty Bites</a>
+            <ul class="nav-links">
+                <li><a href="#home"><i class="fas fa-house"></i> Home</a></li>
+                <li><a href="#menu"><i class="fas fa-book-open"></i> Menu</a></li>
+                <li><a href="#features"><i class="fas fa-star"></i> Why Us</a></li>
+                <li><a href="#contact"><i class="fas fa-headset"></i> Contact</a></li>
+            </ul>
+            <button class="cart-btn" onclick="showToast('Your cart is currently empty!')">
+                <i class="fas fa-shopping-bag"></i> Cart <span id="cart-count">(0)</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1><i class="fas fa-fire" style="color: var(--secondary);"></i> Fresh & Delicious Food Delivered Fast</h1>
+            <p>Chef-crafted meals prepared with top-quality ingredients and brought hot to your doorstep.</p>
+            <div class="hero-actions">
+                <a href="#menu" class="btn"><i class="fas fa-burger"></i> Explore Menu</a>
+                <a href="#features" class="btn btn-secondary"><i class="fas fa-circle-info"></i> Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Highlights Bar -->
+    <section id="features" class="features-bar">
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fas fa-bolt"></i>
+                <div>
+                    <h4>Fast Delivery</h4>
+                    <p>Delivered within 30 minutes</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-leaf"></i>
+                <div>
+                    <h4>Fresh Ingredients</h4>
+                    <p>Locally sourced everyday</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-award"></i>
+                <div>
+                    <h4>Best Quality</h4>
+                    <p>Award-winning master chefs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <main id="menu" class="container">
+        <h2 class="section-title"><i class="fas fa-utensils"></i> Our Popular Menu</h2>
+        <p class="section-subtitle">Explore our customer favorites crafted to satisfy every craving</p>
+
+        <div class="menu-grid">
+            <!-- Item 1 -->
+            <div class="food-card">
+                <div class="food-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80"
+                        alt="Burger" class="food-img">
+                    <span class="food-badge"><i class="fas fa-star"></i> 4.8</span>
+                </div>
+                <div class="food-info">
+                    <div>
+                        <h3 class="food-title">Classic Cheese Burger</h3>
+                        <p class="food-desc">Juicy beef patty stacked with melted cheddar cheese, crisp lettuce, and
+                            signature house sauce.</p>
+                    </div>
+                    <div>
+                        <div class="food-meta">
+                            <span><i class="fas fa-clock"></i> 20-25 mins</span>
+                            <span><i class="fas fa-fire-flame-curved"></i> 540 kcal</span>
+                        </div>
+                        <div class="food-bottom">
+                            <span class="price">$8.99</span>
+                            <button class="btn btn-sm" onclick="addToCart('Classic Cheese Burger')">
+                                <i class="fas fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="food-card">
+                <div class="food-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80"
+                        alt="Pizza" class="food-img">
+                    <span class="food-badge"><i class="fas fa-star"></i> 4.9</span>
+                </div>
+                <div class="food-info">
+                    <div>
+                        <h3 class="food-title">Pepperoni Feast Pizza</h3>
+                        <p class="food-desc">Hand-tossed golden crust baked with rich tomato sauce, premium mozzarella,
+                            and savory pepperoni.</p>
+                    </div>
+                    <div>
+                        <div class="food-meta">
+                            <span><i class="fas fa-clock"></i> 25-30 mins</span>
+                            <span><i class="fas fa-fire-flame-curved"></i> 780 kcal</span>
+                        </div>
+                        <div class="food-bottom">
+                            <span class="price">$12.99</span>
+                            <button class="btn btn-sm" onclick="addToCart('Pepperoni Feast Pizza')">
+                                <i class="fas fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="food-card">
+                <div class="food-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80"
+                        alt="Salad" class="food-img">
+                    <span class="food-badge"><i class="fas fa-star"></i> 4.7</span>
+                </div>
+                <div class="food-info">
+                    <div>
+                        <h3 class="food-title">Avocado Green Bowl</h3>
+                        <p class="food-desc">A refreshing mix of fresh avocado cubes, organic quinoa, cherry tomatoes,
+                            and light olive oil dressing.</p>
+                    </div>
+                    <div>
+                        <div class="food-meta">
+                            <span><i class="fas fa-clock"></i> 15-20 mins</span>
+                            <span><i class="fas fa-fire-flame-curved"></i> 320 kcal</span>
+                        </div>
+                        <div class="food-bottom">
+                            <span class="price">$9.50</span>
+                            <button class="btn btn-sm" onclick="addToCart('Avocado Green Bowl')">
+                                <i class="fas fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="food-card">
+                <div class="food-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1621996346565-e3d5d6281298?auto=format&fit=crop&w=600&q=80"
+                        alt="Pasta" class="food-img">
+                    <span class="food-badge"><i class="fas fa-star"></i> 4.8</span>
+                </div>
+                <div class="food-info">
+                    <div>
+                        <h3 class="food-title">Creamy Alfredo Pasta</h3>
+                        <p class="food-desc">Fettuccine pasta tossed in a rich, velvety garlic parmesan cream sauce with
+                            grilled chicken slices.</p>
+                    </div>
+                    <div>
+                        <div class="food-meta">
+                            <span><i class="fas fa-clock"></i> 20-25 mins</span>
+                            <span><i class="fas fa-fire-flame-curved"></i> 650 kcal</span>
+                        </div>
+                        <div class="food-bottom">
+                            <span class="price">$11.50</span>
+                            <button class="btn btn-sm" onclick="addToCart('Creamy Alfredo Pasta')">
+                                <i class="fas fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="food-card">
+                <div class="food-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=600&q=80"
+                        alt="Sushi" class="food-img">
+                    <span class="food-badge"><i class="fas fa-star"></i> 4.9</span>
+                </div>
+                <div class="food-info">
+                    <div>
+                        <h3 class="food-title">Dragon Sushi Roll</h3>
+                        <p class="food-desc">Fresh tempura shrimp, avocado, and cucumber rolled in seasoned rice, topped
+                            with fresh slices of eel.</p>
+                    </div>
+                    <div>
+                        <div class="food-meta">
+                            <span><i class="fas fa-clock"></i> 20-25 mins</span>
+                            <span><i class="fas fa-fire-flame-curved"></i> 410 kcal</span>
+                        </div>
+                        <div class="food-bottom">
+                            <span class="price">$14.99</span>
+                            <button class="btn btn-sm" onclick="addToCart('Dragon Sushi Roll')">
+                                <i class="fas fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="food-card">
+                <div class="food-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=600&q=80"
+                        alt="Smoothie" class="food-img">
+                    <span class="food-badge"><i class="fas fa-star"></i> 4.9</span>
+                </div>
+                <div class="food-info">
+                    <div>
+                        <h3 class="food-title">Berry Blast Smoothie</h3>
+                        <p class="food-desc">A refreshing blend of fresh strawberries, blueberries, raspberries, Greek
+                            yogurt, and wild honey.</p>
+                    </div>
+                    <div>
+                        <div class="food-meta">
+                            <span><i class="fas fa-clock"></i> 10-15 mins</span>
+                            <span><i class="fas fa-fire-flame-curved"></i> 210 kcal</span>
+                        </div>
+                        <div class="food-bottom">
+                            <span class="price">$5.99</span>
+                            <button class="btn btn-sm" onclick="addToCart('Berry Blast Smoothie')">
+                                <i class="fas fa-cart-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div>
+                <h3><i class="fas fa-utensils"></i> Tasty Bites Restaurant</h3>
+                <p><i class="fas fa-envelope"></i> support@tastybites.example | <i class="fas fa-phone"></i> +1 (555)
+                    234-5678</p>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem; color: #747d8c; font-size: 0.85rem;">&copy; 2026 Tasty Bites.
+            All rights reserved.</p>
+    </footer>
+
+    <!-- Notification Toast Popup -->
+    <div id="toast"><i class="fas fa-check-circle"></i> Item added to cart!</div>
+
+    <!-- JavaScript Script -->
+    <script>
+        let cartItemCount = 0;
+
+        function addToCart(itemName) {
+            cartItemCount++;
+            document.getElementById('cart-count').textContent = '(' + cartItemCount + ')';
+
+            let toast = document.getElementById('toast');
+            toast.innerHTML = '<i class="fas fa-check-circle" style="color: #2ed573;"></i> ' + itemName + ' added to cart!';
+            toast.className = 'show';
+
+            setTimeout(function () {
+                toast.className = toast.className.replace('show', '');
+            }, 3000);
+        }
+
+        function showToast(message) {
+            let toast = document.getElementById('toast');
+            toast.innerHTML = '<i class="fas fa-bag-shopping" style="color: var(--primary);"></i> ' + message;
+            toast.className = 'show';
+
+            setTimeout(function () {
+                toast.className = toast.className.replace('show', '');
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>
